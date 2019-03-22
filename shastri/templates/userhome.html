@@ -5,4 +5,9 @@
 <h>
 	Welcome to website
 </h>
+<br>
+<p>
+	logged in as {{request.user.username}}
+</p>
+<a href="{% url 'logout'%}"> logout</a>
 {% endblock %}
