@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 from .models import UserInfo,Post_Model
 from django.views.generic import ListView,DetailView,TemplateView
+from django.views.generic.edit import DeleteView 
 
 class UserHome(ListView):
 	model=Post_Model
@@ -24,8 +25,18 @@ class CreatePost(TemplateView):
 	def post(self,request):
 		form=PostForm(request.POST)
 		if form.is_valid():
+			form.save(commit=False)
 			form.author=request.user
+			print(form.author)
 			form.save()
 			return HttpResponseRedirect('/user/home')
 		return render(request,self.template_name)
+
+class DeletePost(DeleteView):
+	model=Post_Model
+	success_url='user_home'
+
+	def get_queryset(self,request):
+		owner=self.request.user
+		return self.model.objects.filter(owner=owner)
 

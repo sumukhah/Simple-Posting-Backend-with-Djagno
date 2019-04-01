@@ -12,7 +12,7 @@ class UserInfo(models.Model):
 		return self.user.username
 
 class Post_Model(models.Model):
-	author=models.ForeignKey(User,on_delete=models.CASCADE)
+	author=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	title=models.TextField(blank=True,null=True)
 	content=models.TextField()
 
