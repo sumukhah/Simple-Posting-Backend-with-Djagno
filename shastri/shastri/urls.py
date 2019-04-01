@@ -16,14 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from user import views as userview
+from Post_UserInfo_comment import views as postview
 from . import views
 
 urlpatterns = [
     path('signup/' ,userview.SignUpView.as_view(),name='signup_form'),
     path('admin/', admin.site.urls),
-    path('user/home',views.UserHome.as_view(),name='user_home'),
+    path('user/home/',postview.UserHome.as_view(),name='user_home'),
     path('login/', userview.LoginView.as_view(),name='login'),
-    path('logout/', userview.Logout.as_view(),name='logout'),    
+    path('logout/', userview.Logout.as_view(),name='logout'),
+    path('user/home/post/create/',postview.CreatePost.as_view(),name='create_post'),   
     path('',views.Home,name='home') ,
 
 ]

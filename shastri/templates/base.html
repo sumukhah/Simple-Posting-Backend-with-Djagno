@@ -2,8 +2,41 @@
 <html>
 <head>
 	<title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<p>
+	Welcome {{request.user.username}}
+</p>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'user_home'%}">SH</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'user_home'%}">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+	<li class="active"><a href="{% url 'logout'%}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+{%if form%}
+<form method="POST">
+  {% csrf_token %}
+{{form.title}}
+<br>
+{{form.content}}
+<input type="submit" name="submit">
+</form>
+{%endif%}
 {% block content %}
 
 {% endblock %}

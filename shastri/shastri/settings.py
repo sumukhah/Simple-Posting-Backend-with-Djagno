@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'user',
+    'Post_UserInfo_comment',
 ]
 
 MIDDLEWARE = [
